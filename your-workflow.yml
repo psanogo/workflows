@@ -1,0 +1,28 @@
+name: Android CI
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. First, check out your repository's code
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # 2. Then, set up your Java/JDK environment
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      # 3. Now, other steps that need your code can run
+      # For example, a step to build your Gradle project
+      - name: Build with Gradle
+        run: ./gradlew build
+
+      # Or a dependency submission step that was likely causing the error
+      - name: Submit Dependency Graph
+        uses: actions/dependency-submission-action@v3
