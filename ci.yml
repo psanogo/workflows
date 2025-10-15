@@ -1,0 +1,2 @@
+- run: apk update
+- run: set -x
